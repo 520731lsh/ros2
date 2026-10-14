@@ -98,7 +98,7 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 * 发布控制命令后，CARLA 窗口中的主车以油门 0.5 起步直行前进。
 
-* `Ctrl + C` 停止发布后，车辆逐渐减速停下。
+* `Ctrl + C` 停止发布后，发布制动命令，车辆逐渐减速停下。
 
 * 调整 `throttle`（油门）和 `steer`（转向）数值，可改变车辆速度和行驶方向。
 
