@@ -39,15 +39,15 @@ plugins:
       lang: ja
       separator: '[\s\-\.]+'
       min_search_length: 3
-  - bibtex:
-      bib_file: refs.bib
-      csl_file: nature.csl
-      # 关闭裸 @key 行内引用：避免代码块中的 @staticmethod 被误判为文献引用
-      enable_inline_citations: false
-  - mkdocs-video:
-      is_video: True
-      video_autoplay: True
-      video_loop: True
+#- bibtex:
+#   bib_file: refs.bib
+#  csl_file: nature.csl
+# 关闭裸 @key 行内引用：避免代码块中的 @staticmethod 被误判为文献引用
+#      enable_inline_citations: false
+#  - mkdocs-video:
+#      is_video: True
+#      video_autoplay: True
+#      video_loop: True
   - mermaid2
 
 extra:
@@ -84,6 +84,7 @@ nav:
     - 路径点发布器: './ground/waypoint.md'
     - 自动驾驶代理: './ground/ad_agent.md'
     - 自动驾驶示例: './ground/ad_demo.md'
+    - rostopic 手动驱动: './ground/rostopic_cruise.md'
     - ROS Scenario Runner: './ground/ros_scenario_runner.md'
     - RVIZ Carla 插件: './ground/rviz_plugin.md'
 - 空域载具:
