@@ -76,9 +76,7 @@ rosmsg show carla_msgs/CarlaEgoVehicleControl
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.5, steer: 0.0, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
 
-按 `Ctrl + C` 暂停上一条命令，停止发布，车辆停止行驶。
-
-若要让车辆快速停下，可发布制动命令（油门 0、刹车 1）：
+若要让车辆快速停下，按 `Ctrl + C` 暂停上一条命令，停止发布，再发布制动命令：
 
 ```
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.0, steer: 0.0, brake: 1.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
