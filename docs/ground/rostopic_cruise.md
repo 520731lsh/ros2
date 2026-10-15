@@ -6,8 +6,6 @@
 
 ## 环境要求
 
-
-
 * Ubuntu 20.04 实体机（非虚拟机）
 
 * CARLA 0.9.13（安装目录下运行 `./CarlaUE4.sh` 启动服务器）
@@ -20,8 +18,6 @@
 
 ### 终端 1：启动 CARLA
 
-
-
 ```bash
 cd ~/carla          # 改成你的 CARLA 安装目录
 
@@ -32,13 +28,9 @@ cd ~/carla          # 改成你的 CARLA 安装目录
 
 ### 终端 2：加载桥接环境，启动 ROS 桥与主车
 
-
-
 ```bash
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
-
-
 
 ```bash
 roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
@@ -46,15 +38,11 @@ roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
 
 运行成功后，CARLA 窗口会生成主车（Tesla Model3），manual control 面板显示 `ego_vehicle running`：
 
-
-
 ![CARLA 与 ROS 桥接成功，主车已生成](../img/ground/cruise_bridge_ok.png)
 
 ### 终端 3：查看控制消息，发布控制命令
 
 **打开第 3 个终端**，先加载桥接环境：
-
-
 
 ```bash
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
@@ -62,15 +50,11 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 
 查看车辆控制消息的字段定义：
 
-
-
 ```bash
 rosmsg show carla_msgs/CarlaEgoVehicleControl
 ```
 
 向主车发布控制命令（以 20 Hz 发布：油门 0.5、方向直行、无刹车）：
-
-
 
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.5, steer: 0.0, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
@@ -94,8 +78,6 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 ## 效果说明
 
-
-
 * 发布控制命令后，CARLA 窗口中的主车以油门 0.5 起步直行前进。
 
 * `Ctrl + C` 停止发布后，发布制动命令，车辆逐渐减速停下。
@@ -105,8 +87,6 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 ## 命令参数展示
 
 `rostopic pub` 命令中的各参数含义与取值：
-
-
 
 | 参数                    | 类型      | 含义                  | 示例                 |
 | --------------------- | ------- | ------------------- | ------------------ |
@@ -120,15 +100,11 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 修改命令示例（加速并左转）：
 
-
-
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.8, steer: 0.3, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
 
 ## 常见问题
-
-
 
 * **roslaunch 提示找不到包**：功能包没编译或没在环境里，执行 `catkin_make` 后重新 `source devel/setup.bash`
 
@@ -137,8 +113,6 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 * **黑屏 / 看不到车**：等地图加载完再启动 launch；确认 `host:=localhost`（同一台机器）
 
 ## 参考
-
-
 
 * [设置并连接到 Carla 模拟器](../set_up_and_connect_to_carla.md)
 
