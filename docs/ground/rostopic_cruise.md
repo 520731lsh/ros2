@@ -22,7 +22,7 @@
 
 
 
-```
+```bash
 cd ~/carla          # 改成你的 CARLA 安装目录
 
 ./CarlaUE4.sh
@@ -34,13 +34,13 @@ cd ~/carla          # 改成你的 CARLA 安装目录
 
 
 
-```
+```bash
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 
 
-```
+```bash
 roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
 ```
 
@@ -56,7 +56,7 @@ roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
 
 
 
-```
+```bash
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
@@ -64,7 +64,7 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 
 
 
-```
+```bash
 rosmsg show carla_msgs/CarlaEgoVehicleControl
 ```
 
@@ -72,7 +72,7 @@ rosmsg show carla_msgs/CarlaEgoVehicleControl
 
 
 
-```
+```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.5, steer: 0.0, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
 
@@ -84,7 +84,7 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 若要让车辆快速停下，按 `Ctrl + C` 暂停上一条命令，停止发布，再发布制动命令：
 
-```
+```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.0, steer: 0.0, brake: 1.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
 
@@ -122,7 +122,7 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 
 
-```
+```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.8, steer: 0.3, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
 
