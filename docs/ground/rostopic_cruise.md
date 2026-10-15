@@ -24,6 +24,8 @@ cd ~/carla          # 改成你的 CARLA 安装目录
 ./CarlaUE4.sh
 ```
 
+* 也可以直接运行仓库脚本：`../../src/ground/rostopic_cruise/start_carla.sh`
+
 等待 CARLA 窗口加载出地图画面（几十秒到几分钟）。
 
 ### 终端 2：加载桥接环境，启动 ROS 桥与主车
@@ -35,6 +37,8 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```bash
 roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
 ```
+
+* 终端 2 的环境加载对应脚本：`../../src/ground/rostopic_cruise/setup_bridge.sh`；也可以直接运行 `../../src/ground/rostopic_cruise/launch_bridge.sh`（已包含加载环境）
 
 运行成功后，CARLA 窗口会生成主车（Tesla Model3），manual control 面板显示 `ego_vehicle running`：
 
@@ -48,17 +52,23 @@ roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
+* 终端 3 的环境加载同样用：`../../src/ground/rostopic_cruise/setup_bridge.sh`
+
 查看车辆控制消息的字段定义：
 
 ```bash
 rosmsg show carla_msgs/CarlaEgoVehicleControl
 ```
 
+* 对应脚本：`../../src/ground/rostopic_cruise/show_control_msg.sh`
+
 向主车发布控制命令（以 20 Hz 发布：油门 0.5、方向直行、无刹车）：
 
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.5, steer: 0.0, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
+
+* 对应脚本：`../../src/ground/rostopic_cruise/drive.sh`
 
 ## 运行效果
 
@@ -71,6 +81,8 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.0, steer: 0.0, brake: 1.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
+
+* 对应脚本：`../../src/ground/rostopic_cruise/stop.sh`
 
 ![发布制动命令后车辆停止动图](../img/ground/cruise_stop_demo.gif)
 
@@ -103,6 +115,8 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.8, steer: 0.3, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
 ```
+
+* 修改命令示例对应脚本：可修改 `../../src/ground/rostopic_cruise/drive.sh` 中的 `throttle` / `steer` 参数
 
 ## 常见问题
 
