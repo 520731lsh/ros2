@@ -134,9 +134,9 @@ source devel/setup.bash
 rosrun carla_ros_bridge carla_manual_control.py
 ```
 
-再按 `b` 键启动，运行。
-
 ![第五步效果：chmod + catkin_make 编译脚本](../img/ground/keyboard_control_build.png)
+
+再按 `b` 键启动，运行。
 
 运行演示视频：
 
