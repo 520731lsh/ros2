@@ -14,6 +14,14 @@
 
 * carla-ros-bridge（工作区 `~/carla-ros-bridge/catkin_ws`，已编译）
 
+## 配套代码
+
+本教程对应的代码位于仓库 `src/ground/carla_keyboard_control/` 目录：
+
+| 代码文件 | 说明 |
+| ---- | ---- |
+| `src/ground/carla_keyboard_control/carla_manual_control.py` | 键盘控制脚本，与第四步代码一致 |
+
 ## 第一步：运行 CARLA（打开一个终端）
 
 ```bash
