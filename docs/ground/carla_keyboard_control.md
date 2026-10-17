@@ -16,11 +16,14 @@
 
 ## 配套代码
 
-本教程对应的代码位于仓库 `src/ground/carla_keyboard_control/` 目录：
+本教程对应的代码位于仓库 `src/ground/carla_keyboard_control/` 目录，与下面各步骤的命令一一对应：
 
-| 代码文件 | 说明 |
+| 步骤 | 代码文件 |
 | ---- | ---- |
-| `src/ground/carla_keyboard_control/carla_manual_control.py` | 键盘控制脚本，与第四步代码一致 |
+| 启动 CARLA | `src/ground/carla_keyboard_control/start_carla.sh` |
+| 启动 ROS 桥与主车 | `src/ground/carla_keyboard_control/start_bridge.sh` |
+| 键盘控制脚本（第四步代码） | `src/ground/carla_keyboard_control/carla_manual_control.py` |
+| 编译并运行（第五步） | `src/ground/carla_keyboard_control/build_run.sh` |
 
 ## 第一步：运行 CARLA（打开一个终端）
 
