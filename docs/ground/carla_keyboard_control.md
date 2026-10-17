@@ -148,9 +148,7 @@ rosrun carla_ros_bridge carla_manual_control.py
 
 运行演示效果：
 
-![运行演示效果 1](../img/ground/keyboard_control_demo_1.gif)
-
-![运行演示效果 2](../img/ground/keyboard_control_demo_2.gif)
+![运行演示效果](../img/ground/keyboard_control_demo.gif)
 
 ## 按键说明
 
