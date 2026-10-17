@@ -146,11 +146,11 @@ rosrun carla_ros_bridge carla_manual_control.py
 
 再按 `b` 键启动，运行。
 
-运行演示视频：
+运行演示效果：
 
-<video src="../img/ground/keyboard_control_demo_1.webm" controls></video>
+![运行演示效果 1](../img/ground/keyboard_control_demo_1.gif)
 
-<video src="../img/ground/keyboard_control_demo_2.webm" controls></video>
+![运行演示效果 2](../img/ground/keyboard_control_demo_2.gif)
 
 ## 按键说明
 
