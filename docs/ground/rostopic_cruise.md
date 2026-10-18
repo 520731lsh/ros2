@@ -26,6 +26,10 @@
 | 查看控制消息字段 | `src/ground/rostopic_cruise/show_control_msg.sh` |
 | 发布行驶命令 | `src/ground/rostopic_cruise/drive.sh` |
 | 发布制动命令 | `src/ground/rostopic_cruise/stop.sh` |
+| 列出话题 | `src/ground/rostopic_cruise/list_topics.sh` |
+| 回显车辆状态 | `src/ground/rostopic_cruise/echo_status.sh` |
+| 查看话题类型与频率 | `src/ground/rostopic_cruise/inspect_topic.sh` |
+| 发布倒车命令 | `src/ground/rostopic_cruise/reverse.sh` |
 
 ## 操作步骤
 
@@ -115,6 +119,44 @@ rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVeh
 
 ```bash
 rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.8, steer: 0.3, brake: 0.0, hand_brake: false, reverse: false, gear: 1, manual_gear_shift: false}"
+```
+
+## 其他常用命令
+
+查看当前所有话题（确认桥接后有哪些话题）：
+
+```bash
+rostopic list
+```
+
+回显主车状态消息（实时查看车速、转向等信息，`Ctrl + C` 退出）：
+
+```bash
+rostopic echo /carla/ego_vehicle/vehicle_status
+```
+
+> 若提示话题不存在，先运行 `rostopic list` 确认实际话题名。
+
+查看控制话题的类型与发布频率：
+
+```bash
+rostopic type /carla/ego_vehicle/vehicle_control_cmd
+
+rostopic hz /carla/ego_vehicle/vehicle_control_cmd
+```
+
+查看当前 ROS 节点：
+
+```bash
+rosnode list
+
+rosnode info /carla_ros_bridge
+```
+
+倒车示例（`reverse: true`、倒挡 `gear: -1`）：
+
+```bash
+rostopic pub -r 20 /carla/ego_vehicle/vehicle_control_cmd carla_msgs/CarlaEgoVehicleControl "{throttle: 0.3, steer: 0.0, brake: 0.0, hand_brake: false, reverse: true, gear: -1, manual_gear_shift: false}"
 ```
 
 ## 常见问题
