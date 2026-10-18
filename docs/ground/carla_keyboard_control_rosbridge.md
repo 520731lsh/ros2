@@ -1,14 +1,16 @@
-# CARLA + ROS 桥接后，用键盘控制脚本驾驶小车
+# CARLA + ROS 桥接后，用键盘控制脚本驾驶小车（ros-bridge 路线）
 
 ## 简介
 
 在 Ubuntu 20.04 实体机上完成 CARLA 与 ROS 桥接后，通过 Python 键盘控制节点 `carla_manual_control.py` 发布控制命令驾驶主车。
 
+> 说明：本文是 **carla-ros-bridge 路线** 的键盘控制教程。下文命令中的 `~` 指你的主目录，请按实际安装位置调整路径。
+
 ## 环境要求
 
 * Ubuntu 20.04 实体机（非虚拟机）
 
-* CARLA 0.9.13（安装目录 `/home/lilian/CARLA_0.9.13`）
+* CARLA 0.9.13（安装目录 `~/CARLA_0.9.13`）
 
 * ROS Noetic
 
@@ -28,7 +30,7 @@
 ## 第一步：运行 CARLA（打开一个终端）
 
 ```bash
-cd /home/lilian/CARLA_0.9.13
+cd ~/CARLA_0.9.13
 
 ./CarlaUE4.sh
 ```
@@ -38,7 +40,7 @@ cd /home/lilian/CARLA_0.9.13
 ## 第二步：运行 carla-ros-bridge（再打开一个终端）
 
 ```bash
-cd /home/lilian/carla-ros-bridge/catkin_ws
+cd ~/carla-ros-bridge/catkin_ws
 
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 
@@ -97,7 +99,7 @@ def main():
     ctrl_msg.reverse = False
 
     print("===== Carla 键盘控制小车 =====")
-    print("↑ 前进 | ↓ 后退 | ← 左转 | → 右转")
+    print("w 前进 | s 后退 | a 左转 | d 右转")
     print("空格 = 刹车， q = 退出程序")
     print("================================\n")
 
@@ -109,19 +111,19 @@ def main():
         ctrl_msg.steer = 0.0
         ctrl_msg.brake = 0.0
 
-        if key == '\x1b[A':  # 上方向键 UP
+        if key == 'w':  # 前进
             ctrl_msg.throttle = 0.4
             ctrl_msg.reverse = False
-        elif key == '\x1b[B': # 下方向键 DOWN
+        elif key == 's':  # 后退
             ctrl_msg.throttle = 0.3
             ctrl_msg.reverse = True
-        elif key == '\x1b[D': # 左方向键 LEFT
+        elif key == 'a':  # 左转
             ctrl_msg.steer = -0.3
-        elif key == '\x1b[C': # 右方向键 RIGHT
+        elif key == 'd':  # 右转
             ctrl_msg.steer = 0.3
-        elif key == ' ': # 空格刹车
+        elif key == ' ':  # 空格刹车
             ctrl_msg.brake = 1.0
-        elif key == 'q': # q退出
+        elif key == 'q':  # q退出
             print("脚本结束")
             break
 
@@ -157,10 +159,10 @@ rosrun carla_ros_bridge carla_manual_control.py
 
 | 按键 | 动作 | 发布的值 |
 | ---- | ---- | ---- |
-| `↑` | 前进 | throttle 0.4 |
-| `↓` | 后退 | throttle 0.3，reverse 开启 |
-| `←` | 左转 | steer -0.3 |
-| `→` | 右转 | steer 0.3 |
+| `w` | 前进 | throttle 0.4 |
+| `s` | 后退 | throttle 0.3，reverse 开启 |
+| `a` | 左转 | steer -0.3 |
+| `d` | 右转 | steer 0.3 |
 | `空格` | 刹车 | brake 1.0 |
 | `q` | 退出程序 | 结束节点 |
 
@@ -174,4 +176,4 @@ rosrun carla_ros_bridge carla_manual_control.py
 | `ModuleNotFoundError: No module named carla_msgs` | 没有加载桥接编译环境 | 执行 `source ~/carla-ros-bridge/catkin_ws/devel/setup.bash` |
 | `SyntaxError: invalid syntax` | 代码粘贴出错，如 `termios.TCSADRAIN` 被写成 `TCSADRAI N`（中间多一个空格） | 检查 `termios.tcsetattr` 那一行，确保写的是 `termios.TCSADRAIN` |
 | 黑屏 / 看不到车 | CARLA 地图未加载完，或桥接连不上 CARLA | 等地图加载完再启动 `roslaunch`；确认 `host:=localhost`（同一台机器） |
-| 按方向键无反应 | 终端每次只读取 1 字节，方向键是 3 字节转义序列，无法识别 | 改用单字符按键（`w/a/s/d`）替代方向键，或修改 `getKey()` 读取完整转义序列 |
+| 按键无反应 | 终端原始模式每次只读取 1 字节，方向键是 3 字节转义序列，`getKey()` 读不到完整序列 | 使用单字符按键 `w/a/s/d`（本教程已默认采用），不要使用方向键 |
