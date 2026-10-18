@@ -29,6 +29,7 @@
 | 列出话题 | `src/ground/rostopic_cruise/list_topics.sh` |
 | 回显车辆状态 | `src/ground/rostopic_cruise/echo_status.sh` |
 | 查看话题类型与频率 | `src/ground/rostopic_cruise/inspect_topic.sh` |
+| 查看 ROS 节点 | `src/ground/rostopic_cruise/rosnode_view.sh` |
 | 发布倒车命令 | `src/ground/rostopic_cruise/reverse.sh` |
 
 ## 操作步骤
