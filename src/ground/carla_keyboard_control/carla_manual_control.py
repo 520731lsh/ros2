@@ -28,7 +28,7 @@ def main():
     ctrl_msg.reverse = False
 
     print("===== Carla 键盘控制小车 =====")
-    print("↑ 前进 | ↓ 后退 | ← 左转 | → 右转")
+    print("w 前进 | s 后退 | a 左转 | d 右转")
     print("空格 = 刹车， q = 退出程序")
     print("================================\n")
 
@@ -40,19 +40,19 @@ def main():
         ctrl_msg.steer = 0.0
         ctrl_msg.brake = 0.0
 
-        if key == '\x1b[A':  # 上方向键 UP
+        if key == 'w':  # 前进
             ctrl_msg.throttle = 0.4
             ctrl_msg.reverse = False
-        elif key == '\x1b[B': # 下方向键 DOWN
+        elif key == 's':  # 后退
             ctrl_msg.throttle = 0.3
             ctrl_msg.reverse = True
-        elif key == '\x1b[D': # 左方向键 LEFT
+        elif key == 'a':  # 左转
             ctrl_msg.steer = -0.3
-        elif key == '\x1b[C': # 右方向键 RIGHT
+        elif key == 'd':  # 右转
             ctrl_msg.steer = 0.3
-        elif key == ' ': # 空格刹车
+        elif key == ' ':  # 空格刹车
             ctrl_msg.brake = 1.0
-        elif key == 'q': # q退出
+        elif key == 'q':  # q退出
             print("脚本结束")
             break
 
